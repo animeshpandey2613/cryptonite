@@ -1,9 +1,11 @@
 "use client";
-import React from "react";
-import { useState, useEffect } from "react";
-import Chart from "react-apexcharts";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
+
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+
 const ChartArea = () => {
   const modeFromStore = useSelector((state: RootState) => state.mode);
   const [series, setSeries] = useState([
@@ -23,6 +25,7 @@ const ChartArea = () => {
       data: [3.1, 2, 2.6, 2.2, 1.8, 3, 3.1, 1],
     },
   ]);
+
   useEffect(() => {
     const manage = async () => {
       const options = {
@@ -57,8 +60,6 @@ const ChartArea = () => {
         const dataBitcoin = await responseBitcoin.json();
         const dataEthereum = await responseEthereum.json();
         const dataLitecoin = await responseLitecoin.json();
-        let Min = 0;
-        let Max = 100000;
         const mainDataBitcoin = dataBitcoin.map((element: any[]) => element[1]);
         const mainDataEthereum = dataEthereum.map(
           (element: any[]) => element[1] * 18.85
@@ -129,6 +130,7 @@ const ChartArea = () => {
       min: 2000,
     },
   });
+
   useEffect(() => {
     // This effect will run when `series` changes
     setChartOptions((prevOptions) => ({
@@ -140,6 +142,7 @@ const ChartArea = () => {
       },
     }));
   }, [series]);
+
   return (
     <main>
       <div>

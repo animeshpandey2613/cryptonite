@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import "./Form.css";
 import FormBackLeft from "./FormBackLeft";
@@ -92,7 +92,6 @@ export default function Form() {
         <FormBackLeft />
         <div className="Formoverlay"></div>
       </div>
-      
     </div>
   );
 }

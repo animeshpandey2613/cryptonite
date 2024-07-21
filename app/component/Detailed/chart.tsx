@@ -1,13 +1,16 @@
 "use client";
-import React from "react";
-import { useState, useEffect } from "react";
-import Chart from "react-apexcharts";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import style from "./chart.module.css";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
+
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+
 interface ChartAreaProps {
   name: string;
 }
+
 const ChartArea: React.FC<ChartAreaProps> = ({ name }) => {
   const modeFromStore = useSelector((state: RootState) => state.mode);
   const [series, setSeries] = useState([
@@ -17,6 +20,24 @@ const ChartArea: React.FC<ChartAreaProps> = ({ name }) => {
       data: [1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6],
     },
   ]);
+
+  const [chartOptions, setChartOptions] = useState({
+    chart: {
+      id: "apex-chart-example",
+      foreColor: modeFromStore === "dark" ? "#FFFFFF" : "black",
+    },
+    tooltip: {
+      theme: modeFromStore === "dark" ? "dark" : "light",
+    },
+    xaxis: {
+      categories: [],
+    },
+    yaxis: {
+      max: 80000,
+      min: 2000,
+    },
+  });
+
   useEffect(() => {
     const manage = async () => {
       const options = {
@@ -32,13 +53,11 @@ const ChartArea: React.FC<ChartAreaProps> = ({ name }) => {
           `https://api.coingecko.com/api/v3/coins/${name}/ohlc?vs_currency=usd&days=1`,
           options
         );
-        if (!response) {
-          throw new Error(`HTTP error! Status: ${response}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
         console.log("response got");
         const data = await response.json();
-        let Min = 0;
-        let Max = 100000;
         const mainData = data.map((element: any[]) => element[1]);
         const mainData2 = data.map((element: any[]) => {
           const timestamp = element[0];
@@ -66,41 +85,9 @@ const ChartArea: React.FC<ChartAreaProps> = ({ name }) => {
     };
 
     manage();
-  }, []);
-
-  const [chartOptions, setChartOptions] = useState({
-    chart: {
-      id: "apex-chart-example",
-      foreColor: modeFromStore === "dark" ? "#FFFFFF" : "black",
-    },
-    tooltip: {
-      theme: modeFromStore === "dark" ? "dark" : "light",
-    },
-    xaxis: {
-      categories: [
-        2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2018, 2020, 2025,
-      ],
-    },
-    yaxis: {
-      max: 80000,
-      min: 2000,
-    },
-  });
-  useEffect(() => {
-    // This effect will run when `series` changes
-    setChartOptions((prevOptions) => ({
-      ...prevOptions,
-      yaxis: {
-        ...prevOptions.yaxis,
-        max: Math.max(...series[0].data),
-        min: Math.min(...series[0].data),
-      },
-    }));
-  }, [series]);
-
+  }, [name, series]);
 
   useEffect(() => {
-    // This effect will run when `mode` changes
     setChartOptions((prevOptions) => ({
       ...prevOptions,
       chart: {
@@ -113,9 +100,21 @@ const ChartArea: React.FC<ChartAreaProps> = ({ name }) => {
       },
     }));
   }, [modeFromStore]);
+
+  useEffect(() => {
+    setChartOptions((prevOptions) => ({
+      ...prevOptions,
+      yaxis: {
+        ...prevOptions.yaxis,
+        max: Math.max(...series[0].data),
+        min: Math.min(...series[0].data),
+      },
+    }));
+  }, [series]);
+
   return (
     <main>
-      <div className=" ml-20 mr-3">
+      <div className="ml-20 mr-3">
         <div className={style.head}>Historical Data Analytics -</div>
         <Chart
           options={chartOptions}
