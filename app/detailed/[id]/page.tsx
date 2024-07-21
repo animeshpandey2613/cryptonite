@@ -39,7 +39,7 @@ const CoinDetailPage = () => {
     window.scrollTo(0, 0);
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 7000);
     return () => clearTimeout(timeout);
   }, []);
   const [data, setData] = useState<CoinData | undefined>(undefined);
@@ -95,23 +95,6 @@ const CoinDetailPage = () => {
     fetchData();
   }, [id]);
 
-const [windowSize, setWindowSize] = useState({
-  width:window.innerWidth,
-  height:window.innerHeight,
-}
-)
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-      console.log(windowSize, "hello");
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [windowSize]);
-
   return (
     <>
       <Navbar />
@@ -120,8 +103,9 @@ const [windowSize, setWindowSize] = useState({
           <div className={styles.Container}>
             <div className={styles.UpperHalf}>
               <LeftPart data={data} />
-              {windowSize.width>600 && (data ? <Chart name={data.id} /> : <div>Loading...</div>)}
-              
+              <div className={styles.hider}>
+               {data && (<Chart name={data.id} />)}  : <div>Loading...</div>
+              </div>
             </div>
             <div className={styles.LowerHalf}>
               <Performance data={data} />

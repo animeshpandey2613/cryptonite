@@ -4,31 +4,41 @@ import style from "./page.module.css";
 import Table from "../component/fullTable/Table";
 import Navbar from "../component/Navbar/Navbar";
 import Blocks from "../component/Home/Blocks";
+
 const Page = () => {
   const [loading, setLoading] = useState(true);
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 6000);
-    return () => clearTimeout(timeout);
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
+      const timeout = setTimeout(() => {
+        setLoading(false);
+      }, 7000);
+      return () => clearTimeout(timeout);
+    }
   }, []);
 
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
   useEffect(() => {
-    const handleResize = () => {
+    if (typeof window !== "undefined") {
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
-      console.log(windowSize, "hello");
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+      const handleResize = () => {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+        console.log(windowSize, "hello");
+      };
+
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
   }, [windowSize]);
+
   return (
     <div>
       <Navbar />

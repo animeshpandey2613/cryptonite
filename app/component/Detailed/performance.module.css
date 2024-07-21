@@ -1,86 +1,90 @@
 .container {
-    padding: 20px;
+  padding: 20px;
+}
+
+.heading {
+  color: rgb(var(--foreground-rgb));
+  font-size: 25px;
+  padding-top: 60px;
+  border-top: 1px solid rgb(var(--foreground-rgb));
+}
+
+.barHead {
+  color: rgb(var(--foreground-rgb));
+  font-size: 18px;
+}
+
+.barArea {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  bottom: -20px;
+  margin-top: 20px;
+}
+
+.barLine {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.bar {
+  content: "";
+  top: -30px;
+  width: 60vw;
+  height: 1px;
+  border: 3px solid rgb(var(--foreground-rgb));
+  border-radius: 30%;
+  position: relative;
+}
+
+.downLabel {
+  position: relative;
+  top: -10px;
+  transform: translateX(0%);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.leftLabel,
+.rightLabel {
+  color: rgb(var(--foreground-rgb));
+  white-space: nowrap;
+}
+.arrowUpdate {
+  top: -12px;
+  left: 10px;
+  position: relative;
+}
+
+@media (max-width: 600px) {
+  .container {
   }
-  
+
   .heading {
-    color: rgb(var(--foreground-rgb));
-    font-size: 25px;
-    padding-top: 60px;
-    border-top: 1px solid rgb(var(--foreground-rgb));
+    font-size: 20px;
   }
-  
+
   .barHead {
-    color: rgb(var(--foreground-rgb));
-    font-size: 18px;
+    font-size: 16px;
   }
-  
-  .barArea {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    bottom: -20px;
-    margin-top: 20px;
-  }
-  
+
   .barLine {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 20px;
   }
-  
+
   .bar {
-    content: "";
-    width: 60vw;
-    height: 1px;
-    border: 3px solid rgb(var(--foreground-rgb));
-    border-radius: 30%;
-    position: relative;
+    width: 30vw;
+    top: -25px;
   }
-  
+
   .downLabel {
-    position: absolute;
-    top: -10px;
-    transform: translateX(0%);
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    font-size: 9px;
   }
-  
-  .leftLabel, .rightLabel {
-    color: rgb(var(--foreground-rgb));
-    white-space: nowrap;
+  .arrowUpdate {
   }
-  
-  @media (max-width: 600px) {
-    .container {
-    }
-  
-    .heading {
-      font-size: 20px;
-    }
-  
-    .barHead {
-      font-size: 16px;
-    }
-  
-    .barLine {
-    }
-  
-    .bar {
-        width: 30vw;
-        top: -25px;
-    }
-  
-    .downLabel {
-        font-size: 9px;
-    }
-  .arrowUpdate{
-    position: relative;
-    top: -8px;
+  .leftLabel,
+  .rightLabel {
+    font-size: 10px;
   }
-    .leftLabel, .rightLabel {
-      font-size: 10px;
-    }
-  }
-  
+}

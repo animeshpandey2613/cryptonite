@@ -12,5 +12,8 @@
     .mainArea{
     margin-left: 20px;
     }
+    .hider{
+        display: none;
+    }
     
 }

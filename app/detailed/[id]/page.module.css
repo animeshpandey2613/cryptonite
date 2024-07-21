@@ -16,5 +16,8 @@
   .UpperHalf{
     flex-direction: column-reverse;
   }
+  .hider{
+    display: none;
+  }
   
 }
