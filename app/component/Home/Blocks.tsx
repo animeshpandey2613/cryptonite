@@ -114,8 +114,8 @@ const Blocks = () => {
               <Image
                 src={ele.image}
                 alt="crypto Image"
-                height={150}
-                width={150}
+                height={110}
+                width={110}
               />
             </div>
             <div className={styles.nameArea}>
