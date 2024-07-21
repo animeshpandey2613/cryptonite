@@ -35,7 +35,7 @@ const ChartArea = () => {
     if (window.innerWidth <= 600) {
       setChartDimensions({ width: 350, height: 300 });
     } else {
-      setChartDimensions({ width: 1150, height: 450 });
+      setChartDimensions({ width: 1000, height: 450 });
     }
   };
 
