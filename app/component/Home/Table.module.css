@@ -3,8 +3,8 @@
   border: 2px solid rgb(var(--foreground-rgb));
   display: flex;
   flex-direction: column;
-  width: 70vw;
-  padding: 20px;
+  width: 68vw;
+  padding: 15px;
   font-weight: 600;
   margin: 10px;
   background-color: rgb(var(--background-start-rgb));
@@ -22,7 +22,7 @@
 }
 .tableContainer tr,
 .tableContainer td {
-  padding: 25px 0px;
+  padding: 20px 0px;
 }
 .tableDataArea td {
   background: linear-gradient(

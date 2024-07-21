@@ -3,7 +3,7 @@
     align-items: center;
     flex-direction: column;
     position: relative;
-    padding: 40px;
+    padding: 30px;
     border-radius: 10px;
     background-color: rgb(var(--background-start-rgb));
     border: 2px solid rgb(var(--foreground-rgb));
@@ -19,8 +19,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 23vw;
-    gap: 30px;
+    width: 21vw;
+    gap: 20px;
 }
 .name{
     font-size: 25px;
