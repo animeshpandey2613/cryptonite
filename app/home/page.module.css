@@ -1,0 +1,10 @@
+.mainArea{
+    position: absolute;
+    top: 100px;
+    display: flex;
+    margin-left: 50px;
+}
+.leftArea{
+    display: flex;
+    flex-direction: column;
+}

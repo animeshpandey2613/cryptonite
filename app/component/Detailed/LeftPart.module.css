@@ -1,0 +1,58 @@
+.container {
+  font-size: 18px;
+}
+.heading {
+  font-size: 45px;
+  font-weight: 600;
+  color: rgb(var(--foreground-rgb));
+  border-bottom:1px solid  rgb(var(--foreground-rgb));
+}
+.headingArea{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+@keyframes rotateY {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+  
+  .imageAnimation {
+    animation: rotateY 4s linear infinite;
+  }
+  .description{
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .dataArea{
+    display: flex;
+    flex-direction: column;
+  }
+  .subHead{
+    color: rgb(var(--foreground-rgb));
+  }
+  .tableContainer thead td{
+    color: rgb(var(--foreground-rgb));
+    padding-top: 10px;
+  }
+  .arrowAdjust{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .PriceArea{
+    margin-top: 30px;
+    font-size: 35px;
+    display: flex;
+    border: 2px solid rgb(var(--foreground-rgb));
+    gap:10px;
+    width:500px;
+    padding: 10px;
+  }
+  .Label{
+    color: rgb(var(--foreground-rgb));
+  }

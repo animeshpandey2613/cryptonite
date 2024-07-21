@@ -1,0 +1,104 @@
+.container{
+    color: rgb(var(--text-rgb));
+    border: 2px solid rgb(var(--foreground-rgb));
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    padding: 20px;
+    font-weight: 600;
+    margin:0px 10px;
+    background-color: rgb(var(--background-start-rgb));
+    border-radius: 10px;
+}
+.tableContainer{
+    margin-top: 20px;
+    text-align: center;
+}
+.tableContainer thead{
+    border-bottom: 1px solid rgb(var(--foreground-rgb));
+    align-items: center;
+    font-weight: 600;
+    font-size: large;
+}
+.tableContainer tr,
+.tableContainer td {
+    padding: 25px 0px;
+}
+.tableContainer thead{
+    padding-bottom: 0px;
+}
+.tableContainer thead td{
+    padding-bottom: 0px;
+}
+.tableContainer td{
+    align-items: center;
+
+}
+.headPart{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.heading{
+    font-size: 1.5em;
+}
+.symbolManage{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+.viewMoreButton{
+    border-bottom: 2px solid rgb(var(--foreground-rgb));
+    transition: 500ms;
+    cursor: pointer;
+    &:hover{
+        padding: 5px;
+        border-radius: 5px;
+        transform: scale(1.05);
+        border: 2px solid rgb(var(--foreground-rgb));
+        color:rgb(var(--foreground-rgb));
+    }
+}
+.tableDataArea td{
+cursor: pointer;
+border-bottom: 1px solid rgba(var(--foreground-rgba));
+}
+.pgnoContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+.pgnoSubContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.numberArea{
+    gap: 10px;
+    display: flex;
+
+}
+.currentNumber{
+    color: rgb(var(--foreground-rgb));
+    border: 2px solid rgb(var(--text-rgb));
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: 500ms;
+    &:hover{
+        transform: scale(1.1);
+        background-color: rgb(var(--foreground-rgb));
+        color: rgb(var(--text-rgb));
+    }
+}
+.pgnoSubContainer{
+    display: flex;
+    gap: 15px;
+}

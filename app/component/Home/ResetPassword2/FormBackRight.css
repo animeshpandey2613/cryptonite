@@ -1,0 +1,12 @@
+.RightContainer {
+  color: white;
+  width: 100vw;
+  overflow: hidden;
+  width: 50px;
+}
+.RightContainer2{
+    position: absolute;
+    overflow: hidden;
+    right: 0;
+    color: rgb(0, 243, 187);
+}

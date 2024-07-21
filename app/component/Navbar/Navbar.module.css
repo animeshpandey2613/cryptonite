@@ -1,0 +1,104 @@
+.container {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  height: 120px;
+  /* border-bottom: 2px solid rgb(var(--foreground-rgb)); */
+  justify-content: center;
+  /* background: linear-gradient(180deg, rgba(var(--background-start-rgb),0.5) 0%, rgba(var(--background-start-rgb),0.27) 70%, rgba(var(--background-start-rgb),0) 100%); */
+}
+.container2 {
+  width: 100vw;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+}
+.name {
+  color: rgb(var(--foreground-rgb));
+  font-size: 30px;
+  font-weight: 600;
+  margin-left: 5px;
+}
+.name2 {
+  color: rgb(var(--foreground-rgb));
+  font-size: 30px;
+  font-weight: 600;
+  margin-left: 5px;
+  overflow: hidden;
+  width: 120px;
+}
+.imageAni {
+  animation-name: Anim1;
+  animation-duration: 1.5s;
+  animation-iteration-count: 3;
+}
+.overlay {
+  transform: translateX(-120px);
+  animation-name: Anim2;
+  animation-delay: 4.5s;
+  animation-duration: 2.5s;
+  animation-fill-mode: forwards;
+}
+@keyframes Anim1 {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+@keyframes Anim2 {
+  0% {
+    transform: translateX(-120px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+.searchBar {
+  position: absolute;
+  left: 10px;
+}
+.searchBar input {
+  width: 20vw;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 20px;
+  color: rgb(var(--foreground-rgb));
+  padding: 10px 15px;
+  background-color: rgb(var(--background-start-rgb));
+  border: 2px solid rgb(var(--foreground-rgb));
+  transition: 500ms;
+  &:focus {
+    outline: none;
+    transform: scale(1.05);
+  }
+}
+.button {
+  padding: 9px;
+  border-radius: 50%;
+  font-size: 18px;
+  margin-left: 20px;
+  border: 2px solid rgb(var(--foreground-rgb));
+  transition: 500ms;
+  &:hover {
+    background-color: rgb(var(--foreground-rgb));
+    color: rgb(var(--text-rgb));
+    transform: scale(1.2);
+  }
+}
+.DarkModeSwitch {
+  position: absolute;
+  right: 50px;
+  font-size: 20px;
+  border: 1px solid rgb(var(--text-rgb));
+  color: rgb(var(--text-rgb));
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}

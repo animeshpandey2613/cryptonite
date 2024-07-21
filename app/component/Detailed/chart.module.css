@@ -1,0 +1,4 @@
+.head{
+    color: rgb(var(--foreground-rgb));
+    font-size: 20px;
+}

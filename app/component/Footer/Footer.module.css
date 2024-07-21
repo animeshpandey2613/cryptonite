@@ -1,0 +1,40 @@
+.FooterContainer {
+  color: rgb(var(--text2-rgb));
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 50px;
+  margin-top: 80px;
+  border-top: 1px solid rgb(var(--foreground-rgb));
+}
+.Footerheader {
+  font-size: large;
+  font-weight: 600;
+  margin: 20px 0;
+  color: rgb(var(--text-rgb));
+}
+.FooterDocuments {
+  display: flex;
+}
+.FootersmallMenu {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.FooterRightsArea {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+.FootersocialIcons {
+  display: flex;
+  font-size: 35px;
+  color:  rgb(var(--text-rgb));
+}
+.FooterPlaystore {
+  width: 150px;
+  margin-top: 20px;
+}
+.FooterPlaystore img{
+  width: 100%;
+  object-fit: contain;
+}

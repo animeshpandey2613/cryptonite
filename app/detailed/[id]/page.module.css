@@ -1,0 +1,11 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: 50px;
+}
+.UpperHalf {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 100px;
+}
