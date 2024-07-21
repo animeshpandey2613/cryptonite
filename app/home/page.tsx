@@ -10,7 +10,6 @@ import Footer from "../component/Footer/Footer";
 const HomePage = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    window.scrollTo(0, 0);
     const timeout = setTimeout(() => {
       setLoading(false);
     }, 7000);
