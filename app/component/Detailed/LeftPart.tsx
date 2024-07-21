@@ -1,11 +1,8 @@
-// LeftPart.tsx
 import React, { useState } from "react";
 import styles from "./LeftPart.module.css";
 import { CoinData } from "@/app/detailed/[id]/page";
 import Image from "next/image";
-import { FaArrowDown } from "react-icons/fa";
-
-import { FaArrowUp } from "react-icons/fa";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 interface LeftPartProps {
   data: CoinData | undefined;
@@ -19,6 +16,7 @@ const LeftPart: React.FC<LeftPartProps> = ({ data }) => {
     if (text.length <= length) return text;
     return text.slice(0, length) + "...";
   };
+
   return (
     <div className={styles.container}>
       {data ? (
@@ -88,66 +86,83 @@ const LeftPart: React.FC<LeftPartProps> = ({ data }) => {
                 <td>1 year</td>
               </tr>
             </thead>
-            <tr className="text-center">
-              <td className={
-              data.price_change_percentage_24h > 0
-                ? "text-green-600"
-                : "text-red-600"
-            }>
-                <div className={styles.arrowAdjust}>
-                  {data.price_change_percentage_24h}% {"["}
-                  {data.price_change_percentage_24h > 0 ? (
-                    <FaArrowUp />
-                  ) : (
-                    <FaArrowDown />
-                  )}{"]"}
-                </div>
-              </td>
-              <td className={
-              data.price_change_percentage_7d > 0
-                ? "text-green-600"
-                : "text-red-600"
-            }>
-                <div className={styles.arrowAdjust}>
-                  {data.price_change_percentage_7d}% {"["}
-                  {data.price_change_percentage_7d > 0 ? (
-                    <FaArrowUp />
-                  ) : (
-                    <FaArrowDown />
-                  )}{"]"}
-                </div>
-              </td>
-              <td className={
-              data.price_change_percentage_30d > 0
-                ? "text-green-600"
-                : "text-red-600"
-            }>
-                <div className={styles.arrowAdjust}>
-                  {data.price_change_percentage_30d}% {"["}
-                  {data.price_change_percentage_30d > 0 ? (
-                    <FaArrowUp />
-                  ) : (
-                    <FaArrowDown />
-                  )}{"]"}
-                </div>
-              </td>
-              <td className={
-              data.price_change_percentage_1y > 0
-                ? "text-green-600"
-                : "text-red-600"
-            }>
-                <div className={styles.arrowAdjust}>
-                  {data.price_change_percentage_1y}% {"["}
-                  {data.price_change_percentage_1y > 0 ? (
-                    <FaArrowUp />
-                  ) : (
-                    <FaArrowDown />
-                  )}{"]"}
-                </div>
-              </td>
-            </tr>
+            <tbody>
+              <tr className="text-center">
+                <td
+                  className={
+                    data.price_change_percentage_24h > 0
+                      ? "text-green-600"
+                      : "text-red-600"
+                  }
+                >
+                  <div className={styles.arrowAdjust}>
+                    {data.price_change_percentage_24h.toFixed(1)}% {"["}
+                    {data.price_change_percentage_24h > 0 ? (
+                      <FaArrowUp />
+                    ) : (
+                      <FaArrowDown />
+                    )}
+                    {"]"}
+                  </div>
+                </td>
+                <td
+                  className={
+                    data.price_change_percentage_7d > 0
+                      ? "text-green-600"
+                      : "text-red-600"
+                  }
+                >
+                  <div className={styles.arrowAdjust}>
+                    {data.price_change_percentage_7d.toFixed(1)}% {"["}
+                    {data.price_change_percentage_7d > 0 ? (
+                      <FaArrowUp />
+                    ) : (
+                      <FaArrowDown />
+                    )}
+                    {"]"}
+                  </div>
+                </td>
+                <td
+                  className={
+                    data.price_change_percentage_30d > 0
+                      ? "text-green-600"
+                      : "text-red-600"
+                  }
+                >
+                  <div className={styles.arrowAdjust}>
+                    {data.price_change_percentage_30d.toFixed(1)}% {"["}
+                    {data.price_change_percentage_30d > 0 ? (
+                      <FaArrowUp />
+                    ) : (
+                      <FaArrowDown />
+                    )}
+                    {"]"}
+                  </div>
+                </td>
+                <td
+                  className={
+                    data.price_change_percentage_1y > 0
+                      ? "text-green-600"
+                      : "text-red-600"
+                  }
+                >
+                  <div className={styles.arrowAdjust}>
+                    {data.price_change_percentage_1y.toFixed(1)}% {"["}
+                    {data.price_change_percentage_1y > 0 ? (
+                      <FaArrowUp />
+                    ) : (
+                      <FaArrowDown />
+                    )}
+                    {"]"}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
           </table>
-          <div className={styles.PriceArea}><div className={styles.Label}>Current Price:{" "}</div><div className={styles.value}>{data.current_price} {"(in USD)"}</div></div>
+          <div className={styles.PriceArea}>
+            <div className={styles.Label}>Current Price: </div>
+            <div className={styles.value}>{data.current_price} (in USD)</div>
+          </div>
         </div>
       ) : (
         <div>No data available</div>

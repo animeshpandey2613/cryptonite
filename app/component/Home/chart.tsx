@@ -26,6 +26,25 @@ const ChartArea = () => {
     },
   ]);
 
+  const [chartDimensions, setChartDimensions] = useState({
+    width: 1200,
+    height: 550,
+  });
+
+  const updateDimensions = () => {
+    if (window.innerWidth <= 600) {
+      setChartDimensions({ width: 350, height: 300 });
+    } else {
+      setChartDimensions({ width: 1200, height: 550 });
+    }
+  };
+
+  useEffect(() => {
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+
   useEffect(() => {
     const manage = async () => {
       const options = {
@@ -60,12 +79,14 @@ const ChartArea = () => {
         const dataBitcoin = await responseBitcoin.json();
         const dataEthereum = await responseEthereum.json();
         const dataLitecoin = await responseLitecoin.json();
-        const mainDataBitcoin = dataBitcoin.map((element: any[]) => element[1]);
-        const mainDataEthereum = dataEthereum.map(
-          (element: any[]) => element[1] * 18.85
+        const mainDataBitcoin = dataBitcoin.map((element: any[]) =>
+          parseFloat(element[1].toFixed(2))
         );
-        const mainDataLitecoin = dataLitecoin.map(
-          (element: any[]) => element[1] * 890
+        const mainDataEthereum = dataEthereum.map((element: any[]) =>
+          parseFloat((element[1] * 18.85).toFixed(2))
+        );
+        const mainDataLitecoin = dataLitecoin.map((element: any[]) =>
+          parseFloat((element[1] * 890).toFixed(2))
         );
         const mainData2 = dataBitcoin.map((element: any[]) => {
           const timestamp = element[0];
@@ -98,7 +119,6 @@ const ChartArea = () => {
   }, []);
 
   useEffect(() => {
-    // This effect will run when `mode` changes
     setChartOptions((prevOptions) => ({
       ...prevOptions,
       chart: {
@@ -118,7 +138,7 @@ const ChartArea = () => {
       foreColor: modeFromStore === "dark" ? "#FFFFFF" : "black",
     },
     tooltip: {
-      theme: modeFromStore === "dark" ? "dark" : "light", // This will ensure the text is white on a dark background
+      theme: modeFromStore === "dark" ? "dark" : "light",
     },
     xaxis: {
       categories: [
@@ -132,13 +152,20 @@ const ChartArea = () => {
   });
 
   useEffect(() => {
-    // This effect will run when `series` changes
     setChartOptions((prevOptions) => ({
       ...prevOptions,
       yaxis: {
         ...prevOptions.yaxis,
-        max: Math.max(...series[0].data, ...series[1].data, ...series[2].data),
-        min: Math.min(...series[0].data, ...series[1].data, ...series[2].data),
+        max: Math.max(
+          ...series[0].data.map(Number),
+          ...series[1].data.map(Number),
+          ...series[2].data.map(Number)
+        ),
+        min: Math.min(
+          ...series[0].data.map(Number),
+          ...series[1].data.map(Number),
+          ...series[2].data.map(Number)
+        ),
       },
     }));
   }, [series]);
@@ -150,8 +177,8 @@ const ChartArea = () => {
           options={chartOptions}
           series={series}
           type="line"
-          height={550}
-          width={1200}
+          height={chartDimensions.height}
+          width={chartDimensions.width}
         />
       </div>
     </main>

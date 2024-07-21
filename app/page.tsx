@@ -15,6 +15,23 @@ const HomePage = () => {
     }, 7000);
     return () => clearTimeout(timeout);
   }, []);
+
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+      console.log(windowSize, "hello");
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [windowSize]);
+
   return (
     <main>
       <Form />
@@ -26,7 +43,8 @@ const HomePage = () => {
               <Chart />
               <Table />
             </div>
-            <Blocks />
+            {windowSize.width>800 && (<Blocks />)}
+            
           </div>
           <Footer />
         </>

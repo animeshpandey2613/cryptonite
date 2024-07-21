@@ -13,6 +13,7 @@ interface ChartAreaProps {
 
 const ChartArea: React.FC<ChartAreaProps> = ({ name }) => {
   const modeFromStore = useSelector((state: RootState) => state.mode);
+
   const [series, setSeries] = useState([
     {
       name: `${name} in USD`,
@@ -20,6 +21,11 @@ const ChartArea: React.FC<ChartAreaProps> = ({ name }) => {
       data: [1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6],
     },
   ]);
+
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   const [chartOptions, setChartOptions] = useState({
     chart: {
@@ -37,6 +43,18 @@ const ChartArea: React.FC<ChartAreaProps> = ({ name }) => {
       min: 2000,
     },
   });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+      console.log(windowSize, "hello");
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [windowSize]);
 
   useEffect(() => {
     const manage = async () => {
@@ -85,7 +103,7 @@ const ChartArea: React.FC<ChartAreaProps> = ({ name }) => {
     };
 
     manage();
-  }, [name, series]);
+  }, [name]);
 
   useEffect(() => {
     setChartOptions((prevOptions) => ({
@@ -120,8 +138,8 @@ const ChartArea: React.FC<ChartAreaProps> = ({ name }) => {
           options={chartOptions}
           series={series}
           type="line"
-          height={550}
-          width={800}
+          height={Math.min(windowSize.height * 0.7, 550)}
+          width={Math.min(windowSize.width * 0.5, 1200)}
         />
       </div>
     </main>

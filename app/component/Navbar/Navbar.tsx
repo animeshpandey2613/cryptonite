@@ -33,6 +33,23 @@ const Navbar = () => {
       document.body.classList.add("light");
     }
   }, [darkMode, dispatch]);
+
+  const [windowSize, setWindowSize] = useState({
+    width:window.innerWidth,
+    height:window.innerHeight,
+  }
+  )
+    useEffect(() => {
+      const handleResize = () => {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+        console.log(windowSize, "hello");
+      };
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, [windowSize]);
   return (
     <>
       {loading ? (
@@ -66,12 +83,13 @@ const Navbar = () => {
               ></Image>
             </div>
             <div className={style.name}>ryptonite</div>
-            <div className={style.searchBar}>
+            {windowSize.width>600 && (<div className={style.searchBar}>
               <input type="text" placeholder="Search" />
               <button className={style.button}>
                 <CiSearch />
               </button>
             </div>
+            )}
             <div
               className={style.DarkModeSwitch}
               onClick={() => setDarkMode((ele) => !ele)}

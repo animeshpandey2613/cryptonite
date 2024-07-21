@@ -8,6 +8,7 @@
   font-weight: 600;
   margin: 10px;
   background-color: rgb(var(--background-start-rgb));
+  user-select: none; /* Disable text selection */
 }
 .tableContainer {
   margin-top: 20px;
@@ -23,17 +24,13 @@
 .tableContainer td {
   padding: 25px 0px;
 }
-.tableDataArea td{
-    background: linear-gradient(
-      0deg,
-      rgba(var(--foreground-rgb), var(--gradient1)) 0%,
-      rgba(239, 202, 0, var(--gradient2)) 35%,
-      rgba(255, 215, 0, 0) 100%
-    );
-
-}
-.tableContainer thead {
-  padding-bottom: 0px;
+.tableDataArea td {
+  background: linear-gradient(
+    0deg,
+    rgba(var(--foreground-rgb), var(--gradient1)) 0%,
+    rgba(239, 202, 0, var(--gradient2)) 35%,
+    rgba(255, 215, 0, 0) 100%
+  );
 }
 .tableContainer thead td {
   padding-bottom: 0px;
@@ -59,15 +56,37 @@
   border-bottom: 2px solid rgb(var(--foreground-rgb));
   transition: 500ms;
   cursor: pointer;
-  &:hover {
-    padding: 5px;
-    border-radius: 5px;
-    transform: scale(1.05);
-    border: 2px solid rgb(var(--foreground-rgb));
-    color: rgb(var(--foreground-rgb));
-  }
+}
+.viewMoreButton:hover {
+  padding: 5px;
+  border-radius: 5px;
+  transform: scale(1.05);
+  border: 2px solid rgb(var(--foreground-rgb));
+  color: rgb(var(--foreground-rgb));
 }
 .tableDataArea td {
   cursor: pointer;
   border-bottom: 1px solid rgba(var(--foreground-rgba));
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    width: 80vw;
+    padding: 10px;
+  }
+  .headPart {
+    font-size: 15px;
+  }
+  .tableContainer thead td {
+    padding: 15px 0;
+  }
+  .tableContainer tr,
+  .tableContainer td {
+    padding: 15px 5px;
+    font-size: 13px;
+  }
+  .hideOnMobile {
+    display: none;
+  }
 }

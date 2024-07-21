@@ -45,7 +45,9 @@ const Performance: React.FC<PerformanceProps> = ({ data }) => {
           <div className={style.barArea}>
             <div className={style.bar}></div>
             <div className={style.downLabel} ref={labelRef}>
+            <div className={style.arrowUpdate}>
               <FaCaretUp />
+            </div>
               <div className="relative right-4">{percentage.toFixed(2)}%</div>
             </div>
           </div>
@@ -64,7 +66,10 @@ const Performance: React.FC<PerformanceProps> = ({ data }) => {
           <div className={style.barArea}>
             <div className={style.bar}></div>
             <div className={style.downLabel} ref={labelRef2}>
+              <div className={style.arrowUpdate}>
+
                 <FaCaretUp />
+              </div>
                 <div className=" relative right-4">
                   {percentage2.toFixed(2)}%
                 </div>

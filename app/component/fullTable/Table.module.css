@@ -1,4 +1,4 @@
-.container{
+.container {
     color: rgb(var(--text-rgb));
     border: 2px solid rgb(var(--foreground-rgb));
     display: flex;
@@ -6,81 +6,82 @@
     width: 80vw;
     padding: 20px;
     font-weight: 600;
-    margin:0px 10px;
+    margin: 0px 10px;
     background-color: rgb(var(--background-start-rgb));
     border-radius: 10px;
-}
-.tableContainer{
+    user-select: none; /* Disable text selection */
+  }
+  
+  .tableContainer {
     margin-top: 20px;
     text-align: center;
-}
-.tableContainer thead{
+    width: 100%;
+  }
+  
+  .tableContainer thead {
     border-bottom: 1px solid rgb(var(--foreground-rgb));
     align-items: center;
     font-weight: 600;
     font-size: large;
-}
-.tableContainer tr,
-.tableContainer td {
+  }
+  
+  .tableContainer tr,
+  .tableContainer td {
     padding: 25px 0px;
-}
-.tableContainer thead{
+  }
+  
+  .tableContainer thead td {
     padding-bottom: 0px;
-}
-.tableContainer thead td{
-    padding-bottom: 0px;
-}
-.tableContainer td{
-    align-items: center;
-
-}
-.headPart{
+  }
+  
+  .headPart {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-.heading{
+  }
+  
+  .heading {
     font-size: 1.5em;
-}
-.symbolManage{
+  }
+  
+  .symbolManage {
     display: flex;
-    justify-content: center;
-    gap: 10px;
     align-items: center;
-}
-.viewMoreButton{
-    border-bottom: 2px solid rgb(var(--foreground-rgb));
-    transition: 500ms;
+    gap: 10px;
+  }
+  
+  .textGreen {
+    color: green;
+  }
+  
+  .textRed {
+    color: red;
+  }
+  
+  .tableDataArea td {
     cursor: pointer;
-    &:hover{
-        padding: 5px;
-        border-radius: 5px;
-        transform: scale(1.05);
-        border: 2px solid rgb(var(--foreground-rgb));
-        color:rgb(var(--foreground-rgb));
-    }
-}
-.tableDataArea td{
-cursor: pointer;
-border-bottom: 1px solid rgba(var(--foreground-rgba));
-}
-.pgnoContainer{
+    border-bottom: 1px solid rgba(var(--foreground-rgba));
+  }
+  
+  .pgnoContainer {
     display: flex;
     justify-content: center;
     width: 100%;
     margin-top: 20px;
-}
-.pgnoSubContainer{
+  }
+  
+  .pgnoSubContainer {
     display: flex;
     align-items: center;
     gap: 10px;
-}
-.numberArea{
+  }
+  
+  .numberArea {
     gap: 10px;
     display: flex;
-
-}
-.currentNumber{
+  }
+  
+  .currentNumber {
     color: rgb(var(--foreground-rgb));
     border: 2px solid rgb(var(--text-rgb));
     border-radius: 50%;
@@ -92,13 +93,44 @@ border-bottom: 1px solid rgba(var(--foreground-rgba));
     text-align: center;
     cursor: pointer;
     transition: 500ms;
-    &:hover{
-        transform: scale(1.1);
-        background-color: rgb(var(--foreground-rgb));
-        color: rgb(var(--text-rgb));
+  }
+  
+  .currentNumber:hover {
+    transform: scale(1.1);
+    background-color: rgb(var(--foreground-rgb));
+    color: rgb(var(--text-rgb));
+  }
+  
+  .hideOnMobile {
+    display: table-cell;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      width: 95vw;
+      padding: 10px;
     }
-}
-.pgnoSubContainer{
-    display: flex;
-    gap: 15px;
-}
+  
+    .tableContainer thead td {
+      font-size: medium;
+    }
+  
+    .tableContainer tr,
+    .tableContainer td {
+      padding: 10px 0px;
+    }
+  
+    .currentNumber {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .heading {
+      font-size: 1.2em;
+    }
+  
+    .hideOnMobile {
+      display: none;
+    }
+  }
+  
