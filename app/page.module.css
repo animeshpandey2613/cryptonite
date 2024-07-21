@@ -11,6 +11,8 @@
 @media (max-width:800px) {
     .mainArea{
     margin-left: 20px;
+    position:initial;
+    margin-top: 90px;
     }
     .hider{
         display: none;

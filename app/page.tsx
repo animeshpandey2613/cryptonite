@@ -16,11 +16,11 @@ const HomePage = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  
-
   return (
     <main>
-      <Form />
+      <div className={style.hider}>
+        <Form />
+      </div>
       <Navbar />
       {!loading && (
         <>
@@ -30,9 +30,8 @@ const HomePage = () => {
               <Table />
             </div>
             <div className={style.hider}>
-             <Blocks />
+              <Blocks />
             </div>
-            
           </div>
           <Footer />
         </>
