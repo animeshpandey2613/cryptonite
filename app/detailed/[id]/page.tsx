@@ -9,6 +9,7 @@ import Navbar from "../../component/Navbar/Navbar";
 import { useParams } from "next/navigation";
 import Performance from "@/app/component/Detailed/performance";
 import Footer from "../../component/Footer/Footer";
+import Swal from "sweetalert2";
 export interface CoinData {
   name: string;
   id: string;
@@ -89,7 +90,11 @@ const CoinDetailPage = () => {
         };
         setData(Temp);
       } catch (err) {
-        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Please Reload",
+          text: "The free version of api has request limit!",
+        });
       }
     };
     fetchData();

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FaArrowDown } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 interface CoinData {
   id: string;
@@ -51,7 +52,11 @@ const Blocks = () => {
         });
         setData(totalData);
       } catch (err) {
-        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Please Reload",
+          text: "The free version of api has request limit!",
+        });
       }
     };
     manage();

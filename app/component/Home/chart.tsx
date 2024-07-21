@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
+import Swal from "sweetalert2";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -73,7 +74,12 @@ const ChartArea = () => {
           !responseEthereum.ok &&
           !responseLitecoin.ok
         ) {
-          throw new Error(`HTTP error! Status: ${responseBitcoin.status}`);
+          
+          Swal.fire({
+            icon: "error",
+            title: "Please Reload",
+            text: "The free version of api has request limit!",
+          });
         }
         console.log("response got");
         const dataBitcoin = await responseBitcoin.json();

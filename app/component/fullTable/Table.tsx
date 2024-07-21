@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { CiCircleChevLeft, CiCircleChevRight } from "react-icons/ci";
+import Swal from "sweetalert2";
 
 interface CoinData {
   id: string;
@@ -40,7 +41,11 @@ const Table = () => {
         console.log(data);
         setData(data);
       } catch (err) {
-        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Please Reload",
+          text: "The free version of api has request limit!",
+        });
       }
     };
 

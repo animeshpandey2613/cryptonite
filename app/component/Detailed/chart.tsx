@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import style from "./chart.module.css";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
+import Swal from "sweetalert2";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -72,7 +73,11 @@ const ChartArea: React.FC<ChartAreaProps> = ({ name }) => {
           options
         );
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          Swal.fire({
+            icon: "error",
+            title: "Please Reload",
+            text: "The free version of api has request limit!",
+          });
         }
         console.log("response got");
         const data = await response.json();
