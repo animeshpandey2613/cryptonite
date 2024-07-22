@@ -58,6 +58,10 @@ const Blocks = () => {
           icon: "error",
           title: "Please Reload",
           text: "The free version of api has request limit!",
+        }).then((result) => {
+          if (result.isConfirmed || result.isDismissed) {
+            window.location.href = "/";
+          }
         });
       }
     };
