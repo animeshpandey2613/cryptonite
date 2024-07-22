@@ -37,7 +37,7 @@ const Page = () => {
       window.addEventListener("resize", handleResize);
       return () => window.removeEventListener("resize", handleResize);
     }
-  }, [windowSize]);
+  }, []);
 
   return (
     <div>
