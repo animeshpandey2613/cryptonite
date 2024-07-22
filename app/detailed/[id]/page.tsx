@@ -96,7 +96,9 @@ const CoinDetailPage = () => {
           text: "The free version of api has request limit!",
         }).then((result) => {
           if (result.isConfirmed || result.isDismissed) {
-            window.location.href = "/";
+            setTimeout(() => {
+              window.location.href = "/";
+            }, 3000);
           }
         });
       }
@@ -113,7 +115,7 @@ const CoinDetailPage = () => {
             <div className={styles.UpperHalf}>
               <LeftPart data={data} />
               <div className={styles.hider}>
-               {data && (<Chart name={data.id} />)}  : <div>Loading...</div>
+                {data && <Chart name={data.id} />} : <div>Loading...</div>
               </div>
             </div>
             <div className={styles.LowerHalf}>

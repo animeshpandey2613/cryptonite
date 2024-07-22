@@ -10,6 +10,8 @@ import { MdLightMode } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { setMode } from "@/app/features/CoinSlice";
 import { MdOutlineHistory } from "react-icons/md";
+import { useRouter } from "next/navigation";
+import { setRecentlyUsed } from "@/app/features/CoinSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -51,7 +53,16 @@ const Navbar = () => {
       setShowSuggestions(false);
     }, 100);
   };
-
+  const Router = useRouter();
+  const SearchHandler= async()=>{
+const url = `https://api.coingecko.com/api/v3/search?query=${searchInput}`;
+const options = {method: 'GET', headers: {accept: 'application/json'}};
+const res = await fetch(url, options)
+const data2 = await res.json();
+console.log(data2.coins[0]);
+dispatch(setRecentlyUsed(data2.coins[0].id));
+Router.push(`detailed/${data2.coins[0].id}`);
+  }
   return (
     <>
       {loading ? (
@@ -94,13 +105,13 @@ const Navbar = () => {
                 onFocus={handleSearchFocus}
                 onBlur={handleSearchBlur}
               />
-              <button className={style.button}>
+              <button className={style.button} onClick={SearchHandler}>
                 <CiSearch />
               </button>
               {showSuggestions && (
                 <div className={style.suggestions}>
                   {recentlyViewed.map((item: string, index: number) => (
-                    <div key={index} className={style.suggestionItem}>
+                    <div key={index} className={style.suggestionItem} onClick={()=>{Router.push(`/detailed/${item}`)}}>
                       <MdOutlineHistory />
                       {item}
                     </div>

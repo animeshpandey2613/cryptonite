@@ -5,7 +5,7 @@ import Image from "next/image";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import { useDispatch, UseDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setRecentlyUsed } from "@/app/features/CoinSlice";
 
 interface CoinData {
@@ -44,7 +44,9 @@ const Table = () => {
           text: "The free version of api has request limit!",
         }).then((result) => {
           if (result.isConfirmed || result.isDismissed) {
-            window.location.href = "/";
+            setTimeout(()=>{
+              window.location.href = "/";
+            }, 3000);
           }
         });
       }

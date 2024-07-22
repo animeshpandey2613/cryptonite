@@ -60,7 +60,9 @@ const Blocks = () => {
           text: "The free version of api has request limit!",
         }).then((result) => {
           if (result.isConfirmed || result.isDismissed) {
-            window.location.href = "/";
+            setTimeout(()=>{
+              window.location.href = "/";
+            }, 3000);
           }
         });
       }
