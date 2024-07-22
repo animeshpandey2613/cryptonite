@@ -6,6 +6,8 @@ import { FaArrowDown } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import { setRecentlyUsed } from "@/app/features/CoinSlice";
+import { useDispatch } from "react-redux";
 
 interface CoinData {
   id: string;
@@ -22,6 +24,7 @@ const Blocks = () => {
   const cardRef1 = useRef<HTMLDivElement>(null);
   const cardRef2 = useRef<HTMLDivElement>(null);
   const cardRef3 = useRef<HTMLDivElement>(null);
+  const dispatch = useDispatch();
   useEffect(() => {
     const url =
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2C%20ethereum%2C%20litecoin&price_change_percentage=24h";
@@ -32,7 +35,6 @@ const Blocks = () => {
         "x-cg-demo-api-key": "CG-m1GB2M2unyufPdMQppNTvHHH",
       },
     };
-
     const manage = async () => {
       try {
         const res = await fetch(url, options);
@@ -99,7 +101,7 @@ const Blocks = () => {
             onMouseLeave={() => {
               HoverHandlerLeave(index);
             }}
-            onClick={()=>{router.push(`/detailed/${ele.id}`)}}
+            onClick={()=>{dispatch(setRecentlyUsed(ele.id)); router.push(`/detailed/${ele.id}`);}}
           >
             <div
               className={

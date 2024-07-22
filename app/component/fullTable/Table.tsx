@@ -6,6 +6,8 @@ import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { CiCircleChevLeft, CiCircleChevRight } from "react-icons/ci";
 import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { setRecentlyUsed } from "@/app/features/CoinSlice";
 
 interface CoinData {
   id: string;
@@ -23,7 +25,7 @@ const Table = () => {
   const [data, setData] = useState<CoinData[]>([]);
   const [pgno, setPgno] = useState(1);
   const router = useRouter();
-
+  const dispatch = useDispatch();
   useEffect(() => {
     const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&page=${pgno}&per_page=15&price_change_percentage=30d`;
     const options = {
@@ -53,6 +55,7 @@ const Table = () => {
   }, [pgno]);
 
   const clickHandler = (id: string) => {
+    dispatch(setRecentlyUsed(id));
     router.push(`/detailed/${id}`);
   };
 

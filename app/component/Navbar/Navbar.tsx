@@ -7,16 +7,14 @@ import logo2 from "../../Images/temp3.png";
 import { CiSearch } from "react-icons/ci";
 import { MdDarkMode } from "react-icons/md";
 import { MdLightMode } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setMode } from "@/app/features/CoinSlice";
+import { MdOutlineHistory } from "react-icons/md";
+
 const Navbar = () => {
   const dispatch = useDispatch();
+  const recentlyViewed = useSelector((state: any) => state.recentlyViewed);
   const [loading, setLoading] = useState(true);
-  useEffect(()=>{
-    const timeout = setTimeout(()=>{
-      setLoading(false);
-    }, 6000)
-  })
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window !== "undefined") {
       dispatch(setMode(window.localStorage.getItem("mode")));
@@ -24,6 +22,16 @@ const Navbar = () => {
     }
     return true;
   });
+  const [searchInput, setSearchInput] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 6000);
+    return () => clearTimeout(timeout);
+  }, []);
+
   useEffect(() => {
     window.localStorage.setItem("mode", darkMode ? "dark" : "light");
     dispatch(setMode(darkMode ? "dark" : "light"));
@@ -33,6 +41,16 @@ const Navbar = () => {
       document.body.classList.add("light");
     }
   }, [darkMode, dispatch]);
+
+  const handleSearchFocus = () => {
+    setShowSuggestions(true);
+  };
+
+  const handleSearchBlur = () => {
+    setTimeout(() => {
+      setShowSuggestions(false);
+    }, 100);
+  };
 
   return (
     <>
@@ -68,10 +86,27 @@ const Navbar = () => {
             </div>
             <div className={style.name}>ryptonite</div>
             <div className={style.searchBar}>
-              <input type="text" placeholder="Search" />
+              <input
+                type="text"
+                placeholder="Search"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                onFocus={handleSearchFocus}
+                onBlur={handleSearchBlur}
+              />
               <button className={style.button}>
                 <CiSearch />
               </button>
+              {showSuggestions && (
+                <div className={style.suggestions}>
+                  {recentlyViewed.map((item: string, index: number) => (
+                    <div key={index} className={style.suggestionItem}>
+                      <MdOutlineHistory />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             <div
               className={style.DarkModeSwitch}
