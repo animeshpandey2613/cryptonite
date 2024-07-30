@@ -61,7 +61,7 @@ const res = await fetch(url, options)
 const data2 = await res.json();
 console.log(data2.coins[0]);
 dispatch(setRecentlyUsed(data2.coins[0].id));
-Router.push(`detailed/${data2.coins[0].id}`);
+Router.push(`/detailed/${data2.coins[0].id}`);
   }
   return (
     <>
